@@ -1,0 +1,33 @@
+CREATE DATABASE FitnessTracker;
+USE FitnessTracker;
+
+-- Profile Module Table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(225) NOT NULL;
+    age INT,
+    weight FLOAT,
+    height FLOAT,
+    step_goal INT DEFAULT 10000
+);
+
+-- Diet Module Table (Recipes & Calories)
+CREATE TABLE diet_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    item_name VARCHAR(100),
+    calories INT,
+    log_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Workout Module Table
+CREATE TABLE workouts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    workout_name VARCHAR(100),
+    duration_mins INT,
+    intensity VARCHAR(20),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
