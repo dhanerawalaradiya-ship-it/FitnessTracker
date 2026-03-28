@@ -1,9 +1,12 @@
 <?php
+$uid = $_SESSION['user_id']; 
+
 if(isset($_POST['update_steps'])) {
     $steps = $_POST['step_count'];
-    $conn->query("UPDATE users SET step_goal = '$steps' WHERE id = 1");
+    $conn->query("UPDATE users SET step_goal = '$steps' WHERE id = $uid");
 }
-$user = $conn->query("SELECT * FROM users WHERE id = 1")->fetch_assoc();
+$user_query = $conn->query("SELECT * FROM users WHERE id = $uid");
+$user = $user_query->fetch_assoc();
 ?>
 <div class="card">
     <h2>Profile & Steps</h2>
